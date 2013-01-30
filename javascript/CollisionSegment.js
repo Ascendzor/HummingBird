@@ -4,7 +4,7 @@ function CollisionSegment(x, y, ascendingTexture, flatTexture, descendingTexture
     var width = screenSize.width / 4;
     var height = 400;
 	
-	var velocity;
+	var velocity = {X:2, Y:0};
 		
 	var previous;
 	
@@ -13,8 +13,6 @@ function CollisionSegment(x, y, ascendingTexture, flatTexture, descendingTexture
 		textures.push(flatTexture);
 		textures.push(descendingTexture);
 		texture = textures[1];
-		
-		velocity = {X:2, Y:0};
 	};
 	
 	this.setDebug = function(v) {
@@ -48,8 +46,12 @@ function CollisionSegment(x, y, ascendingTexture, flatTexture, descendingTexture
 		return y;
 	}
 	
-	this.moveLeft = function(){
-		x -= velocity.X;
+	this.getPosition = function(){
+		return {X: x, Y: y};
+	}
+	
+	this.moveLeft = function(xScalar){
+		x -= velocity.X * xScalar;
 	};
 	
 	this.getVelocity = function(){

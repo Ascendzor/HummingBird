@@ -14,6 +14,7 @@ function main(){
 	
 	var pickups = [];
 	var pickupSpider;
+	var pickupBooster;
 
     var eventLog = [];
     var start_date = Date.now();
@@ -28,6 +29,10 @@ function main(){
 	var pickupsPickedUp = 1;
     var beatrate; 
     var total_beats= 0;
+	
+	var xScalar = 1;
+	var boostingState = "end";
+	var boostingStartTime;
 	
     // drawing the skybox
     var sky;
@@ -53,17 +58,23 @@ function main(){
 		canvas.height = screenSize.height;
 		context = canvas.getContext('2d');
 
-        sky = new Sky();
-
         var birdTextures = [];
         for (var i = 0; i < 4; i++) {
             birdTextures[i] = new Image();
             birdTextures[i].src = "images/birdy/bird" + i + ".png";
         };
-		bird = new Bird(birdTextures);
+		var explosionTextures = [];
+		for(var i=1; i<10; i++){
+			explosionTextures[i] = new Image();
+			explosionTextures[i].src = "images/birdy/explosion/explosion" + i + ".png";
+		}
+		bird = new Bird(birdTextures, explosionTextures);
 		
 		pickupSpider = new Image();
 		pickupSpider.src="images/TroysPickup.png";
+		
+		pickupBooster = new Image();
+		pickupBooster.src="images/TroysPickupBooster.png";
 		
 		var ascendingTexture = new Image();
 		ascendingTexture.src = "images/ascending.png";
@@ -89,6 +100,10 @@ function main(){
 		}
 		
 		collisionSegments[0].setPrevious(collisionSegments[collisionSegments.length-1]);
+		
+		
+
+        sky = new Sky(collisionSegments[0].getVelocity());
 		
         // schdule main loop updated
         setInterval(mainLoop, ONE_FRAME_TIME);
@@ -154,11 +169,10 @@ function main(){
 		
         if (beatCounter > 0) {
             isHeartBeating = true;
-            beatrate = (beatCounter) * 60;
-            total_beats += beatCounter;;
-        } else {
-			
         };
+		
+		beatrate = beatCounter * 60;
+		total_beats += beatCounter;
         eventLog = [];
 
         document.getElementById("heartbeat").innerHTML = "HeartBeats: " + total_beats +  " <br/> BPM: " + beatrate + " <br/>";
@@ -166,64 +180,98 @@ function main(){
     
     
 	function updateObjects(){
-		for(var i=0; i < collisionSegments.length; i++){
-			collisionSegments[i].moveLeft();
+		if(boostingState == "start"){
+			xScalar = 4;
+			bird.setVelocityX(-1);
+			
+			if((Date.now() - boostingStartTime) > 2000){
+				boostingState = "still";
+			}
+		}
+		else if(boostingState == "still"){
+			bird.setVelocityX(0);
+			
+			if((Date.now() - boostingStartTime) > 12000){
+				boostingState = "movingForwards";
+			}
+		}
+		else if(boostingState == "movingForwards"){
+			bird.setVelocityX(1);
+			xScalar = 1;
+			
+			if((Date.now() - boostingStartTime) > 14000){
+				boostingState = "stopMoving";
+			}
+		}else if(boostingState == "stopMoving"){
+			bird.setVelocityX(0);
+			boostingState = "end";
 		}
 		
-        var bird_movement = (bps - (eventLog.length*pickupsPickedUp));
-        bird.move({
-			X: 0,
-			Y:bird_movement
-		});
+		
+		if(bird.getIsDead()){
+			xScalar = 0;
+		}
+		
+		for(var i=0; i < collisionSegments.length; i++){
+			collisionSegments[i].moveLeft(xScalar);
+		}
+		
+		if(!bird.getIsDead()){
+			var bird_movement = (bps - (eventLog.length*pickupsPickedUp));
+				bird.move({
+					X: 0,
+					Y:bird_movement
+			});
+		};
 		
 		for(var i=0; i < pickups.length; i++){
-			pickups[i].update(collisionSegments[0].getVelocity());
+			pickups[i].update(collisionSegments[0].getVelocity(), xScalar);
 		}
 		
-        sky.update();
+		sky.update(xScalar);
     }
 	
 	function spawnPickup(){
 		if(utill.randomRange(3) == 0){
 			var rightestSegment = collisionSegments[0];
 			for(var i=1; i<collisionSegments.length; i++){
-				if(rightestSegment.getX() < collisionSegments[i].getX()){
+				if(rightestSegment.getPosition().X < collisionSegments[i].getPosition().X){
 					rightestSegment = collisionSegments[i];
 				}
 			}
-			pickups.push(new Pickup(pickupSpider, utill.randomRange(rightestSegment.getY()-60)));
+			pickups.push(new Pickup(pickupSpider, pickupBooster, utill.randomRange(rightestSegment.getPosition().Y-60)));
 		}
 	}
 	
 	function checkCollisions(){
 		for(var i=0; i < collisionSegments.length; i++){
-			if((collisionSegments[i].getX() > -50) && (collisionSegments[i].getX() < 278)){
+			if((collisionSegments[i].getPosition().X > -50) && (collisionSegments[i].getPosition().X < 278)){
 				if(collisionSegments[i].getTexture().src == collisionSegmentImages[0].src){
 					
-					var birdCollisionY = (bird.getY() + 128);
-					var birdCollisionX = bird.getX() + 64;
+					var birdCollisionY = (bird.getPosition().Y + 128);
+					var birdCollisionX = bird.getPosition().X + 64;
 					
-					var distanceBetween = birdCollisionX - collisionSegments[i].getX();
+					var distanceBetween = birdCollisionX - collisionSegments[i].getPosition().X;
 					if(distanceBetween > 0){
 						var percentageAcross = (distanceBetween/2)/100;
-						var blockHeight = (collisionSegments[i].getY() + 106) - (106*percentageAcross);
+						var blockHeight = (collisionSegments[i].getPosition().Y + 106) - (106*percentageAcross);
 						
 						if(birdCollisionY > blockHeight){
 							bird.kill();
 						}
 					}
 				}else if(collisionSegments[i].getTexture().src == collisionSegmentImages[1].src){
-					if(bird.getY() > (collisionSegments[i].getY()-22)){
+					if(bird.getPosition().Y > (collisionSegments[i].getPosition().Y-22)){
 						bird.kill();
 					}
 				}else if(collisionSegments[i].getTexture().src == collisionSegmentImages[2].src){
-					var birdCollisionY = (bird.getY() + 128);
-					var birdCollisionX = bird.getX() + 64;
+					var birdCollisionY = (bird.getPosition().Y + 128);
+					var birdCollisionX = bird.getPosition().X + 64;
 					
-					var distanceBetween = birdCollisionX - collisionSegments[i].getX();
+					var distanceBetween = birdCollisionX - collisionSegments[i].getPosition().X;
 					if(distanceBetween > 0){
 						var percentageAcross = (distanceBetween/2)/100;
-						var blockHeight = (collisionSegments[i].getY()) + (106*percentageAcross);
+						var blockHeight = (collisionSegments[i].getPosition().Y) + (106*percentageAcross);
 						
 						if(birdCollisionY > blockHeight){
 							bird.kill();
@@ -234,13 +282,22 @@ function main(){
 		}
 		
 		for(var i=0; i < pickups.length; i++){
-			if(bird.getX() < (pickups[i].getPosition().X+64)){
-				if((bird.getX()+128) > pickups[i].getPosition().X){
-					if(bird.getY() < (pickups[i].getPosition().Y+64)){
-						if((bird.getY()+128) > pickups[i].getPosition().Y){
-							//collision with pickup is working
+			if(bird.getPosition().X < (pickups[i].getPosition().X+pickups[i].getSize().width)){
+				if((bird.getPosition().X+bird.getSize().width) > pickups[i].getPosition().X){
+					if(bird.getPosition().Y < (pickups[i].getPosition().Y+pickups[i].getSize().height)){
+						if((bird.getPosition().Y+bird.getSize().height) > pickups[i].getPosition().Y){
 							var index = pickups.indexOf(pickups[i]);
 							score += 1000;
+							
+							if(pickups[i].getIsBooster() == 1){
+								score += 1000;
+								
+								if(boostingState == "end"){
+									boostingState = "start";
+									boostingStartTime = Date.now();
+								}
+							}
+							
 							pickups.splice(index, 1);
 							pickupsPickedUp += 0.1;
 							playPickupAudio();
@@ -248,6 +305,10 @@ function main(){
 					}
 				}
 			}
+		}
+		
+		if(bird.getPosition().Y < -30){
+			bird.kill();
 		}
 	}
 	function draw(){
