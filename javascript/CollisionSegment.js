@@ -15,9 +15,6 @@ function CollisionSegment(x, y, ascendingTexture, flatTexture, descendingTexture
 		texture = textures[1];
 	};
 	
-	this.setDebug = function(v) {
-		isDebug = v;
-	}
 	this.getPrevious = function(){
 		return previous;
 	}

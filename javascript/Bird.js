@@ -3,14 +3,14 @@ function Bird(textures, explosionTextures){
     var animationIndex = 0;
     var frameInterval = 15;
 	var x = 150;
-	var y = 0.28 * screenSize.height;
+	var y = 0.15 * screenSize.height;
 	
 	var intervaleExplode;
 	
 	var isDead = false;
 	
 	var velocity;
-	var animationIndex = 0;
+	var explosionAnimationIndex = 0;
 	
 	var constructor = function(){
         setInterval(animate, frameInterval);
@@ -66,10 +66,12 @@ function Bird(textures, explosionTextures){
 	};
 	
 	this.draw = function(){
-		context.drawImage(activeTexture, x, y, 128, 128);
-		
 		if(isDead){
-			context.drawImage(explosionTextures[animationIndex], x, y, 256, 256);
+			context.drawImage(explosionTextures[explosionAnimationIndex], x-64, y-64, 256, 256);
+		}
+		
+		if(explosionAnimationIndex < 4){
+			context.drawImage(activeTexture, x, y, 128, 128);
 		}
 	};
 	
@@ -79,14 +81,16 @@ function Bird(textures, explosionTextures){
 	
 	this.kill = function(){
 		if(!isDead){
-			console.log("this better not be happenning");
-			intervalExplode = setInterval(explode, 1000);
+			intervalExplode = setInterval(explode, 70);
 			isDead = true;
 		};
 	};
 	
 	var explode = function(){
-		animationIndex++;
+		if(explosionAnimationIndex < explosionTextures.length-1)
+		{
+			explosionAnimationIndex++;
+		}
 	}
 
 	constructor();

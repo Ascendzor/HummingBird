@@ -64,9 +64,9 @@ function main(){
             birdTextures[i].src = "images/birdy/bird" + i + ".png";
         };
 		var explosionTextures = [];
-		for(var i=1; i<10; i++){
+		for(var i=0; i<10; i++){
 			explosionTextures[i] = new Image();
-			explosionTextures[i].src = "images/birdy/explosion/explosion" + i + ".png";
+			explosionTextures[i].src = "images/birdy/explosion/explosion" + (i+1) + ".png";
 		}
 		bird = new Bird(birdTextures, explosionTextures);
 		

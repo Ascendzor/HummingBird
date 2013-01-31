@@ -5,6 +5,9 @@ function Sky(velocity) {
     var clouds = [];
 	var theHills;
 	var middleHills;
+	
+	var spawnTree;
+	var spawnNest;
 
     function init () {
         var sunImage = new Image();
@@ -57,6 +60,22 @@ function Sky(velocity) {
 			position1: {x: 2001, y:(screenSize.height-601)},
 			speed: velocity.X * 0.15
 		};
+		
+		var spawnTreeImage = new Image();
+		spawnTreeImage.src = "images/tree.png";
+		spawnTree = {
+			img: spawnTreeImage,
+			position: {x: 70, y:(screenSize.height-600)},
+			speed: velocity.X
+		};
+		
+		var spawnNestImage = new Image();
+		spawnNestImage.src = "images/nest.png";
+		spawnNest = {
+			img: spawnNestImage,
+			position: {x: (spawnTree.position.x + 80), y: (spawnTree.position.y + 90)},
+			speed: spawnTree.speed
+		};
     };
 	
     this.update = function (xScalar){
@@ -91,6 +110,9 @@ function Sky(velocity) {
 		if(middleHills.position1.x < -middleHills.img.width){
 			middleHills.position1 = {x:2001-middleHills.speed * xScalar, y:0};
 		}
+		
+		spawnTree.position.x = spawnTree.position.x - spawnTree.speed * xScalar;
+		spawnNest.position.x = spawnNest.position.x - spawnTree.speed * xScalar;
     }
 	
     this.draw = function () {
@@ -103,6 +125,8 @@ function Sky(velocity) {
 		context.drawImage(middleHills.img, middleHills.position0.x, middleHills.position0.y);
 		context.drawImage(middleHills.img, middleHills.position1.x, middleHills.position1.y);
 		context.drawImage(clouds[2].img, clouds[2].position.x, clouds[2].position.y);
+		context.drawImage(spawnTree.img, spawnTree.position.x, spawnTree.position.y);
+		context.drawImage(spawnNest.img, spawnNest.position.x, spawnNest.position.y);
     };
     init();
 };
