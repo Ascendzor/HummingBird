@@ -1,7 +1,6 @@
 function Pickup(texture, boosterTexture, segmentY) {
 	
 	var isBooster = utill.randomRange(2);
-
 	
 	var position = {
 		X: screenSize.width,
