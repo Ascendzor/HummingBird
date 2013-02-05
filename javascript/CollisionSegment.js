@@ -1,19 +1,15 @@
-function CollisionSegment(x, y, ascendingTexture, flatTexture, descendingTexture){
-	var textures = [];
-	var texture;
+function CollisionSegment(x, y, newTextures){
+	var textures = newTextures;
+	var texture = textures[5];
+	console.log(textures);
     var width = screenSize.width / 4;
     var height = 400;
+	var type = "flat";
 	
 	var velocity = {X:2, Y:0};
 		
 	var previous;
 	
-	var constructor = function(){
-		textures.push(ascendingTexture);
-		textures.push(flatTexture);
-		textures.push(descendingTexture);
-		texture = textures[1];
-	};
 	
 	this.getPrevious = function(){
 		return previous;
@@ -23,8 +19,8 @@ function CollisionSegment(x, y, ascendingTexture, flatTexture, descendingTexture
 		previous = previousz;
 	}
 	
-	this.getTexture = function(){
-		return texture;
+	this.getType = function(){
+		return type;
 	}
 	
 	this.getY = function(){
@@ -59,39 +55,44 @@ function CollisionSegment(x, y, ascendingTexture, flatTexture, descendingTexture
 		if((x+width) < 0){
 			x = (screenSize.width-velocity.X);
 			y = previous.getY();
-			
+			var randint;
 			if(y >= (450/600) * screenSize.height){
-				var randint = utill.randomRange(textures.length-1);
+				randint = utill.randomRange(textures.length-4);
 				texture = textures[randint];
 			}else if( y <= 200/600 * screenSize.width){
-				var randint = utill.randomRange(textures.length-1);
-				texture = textures[(randint+1)];
+				randint = utill.randomRange(textures.length-4);
+				randint += 4;
+				texture = textures[randint];
 			}else{
-				var randint = utill.randomRange(textures.length);
+				randint = utill.randomRange(textures.length);
 				texture = textures[randint];
 			}
-
+			if(randint < 4){
+				type = "ascending";
+			}else if((randint > 3) && (randint < 6)){
+				type = "flat";
+			}else{
+				type = "descending";
+			}
             var offset = 96;
 			//if previous is ascending
-			if((previous.getTexture().src == textures[0].src) && (texture.src == textures[0].src)){
+			if((previous.getType() == "ascending") && (type == "ascending")){
 				y -= offset;
 			}
-			if((previous.getTexture().src == textures[0].src) && (texture.src == textures[1].src)){
+			if((previous.getType() == "ascending") && (type == "flat")){
 				y -= offset;
 			}
 			
 			//if previous is flat
-			if((previous.getTexture().src == textures[1].src) && (texture.src == textures[2].src)){
+			if((previous.getType() == "flat") && (type == "descending")){
 				y += offset;
 			}
 			
 			//if previous is descending
-			if((previous.getTexture().src == textures[2].src) && (texture.src == textures[2].src)){
+			if((previous.getType() == "descending") && (type == "descending")){
 				y+= offset;
 			}
 		}
 		context.drawImage(texture, x, y, width, height);
 	}
-	
-	constructor();
 }

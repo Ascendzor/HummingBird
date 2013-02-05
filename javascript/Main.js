@@ -86,29 +86,48 @@ function main(){
 		treeImage = new Image();
 		treeImage.src = "images/spiderTree.png";
 		
-		var ascendingTexture = new Image();
-		ascendingTexture.src = "images/SegmentTextures/ascending1.png";
-		collisionSegmentImages.push(ascendingTexture);
-		var flatTexture = new Image();
-		flatTexture.src = "images/level.png";
-		collisionSegmentImages.push(flatTexture);
-		var descendingTexture = new Image();
-		descendingTexture.src = "images/descending.png";
-		collisionSegmentImages.push(descendingTexture);
+		var ascendingTexture1 = new Image();
+		ascendingTexture1.src = "images/SegmentTextures/ascending1.png";
+		collisionSegmentImages.push(ascendingTexture1);
+		var ascendingTexture2 = new Image();
+		ascendingTexture2.src = "images/SegmentTextures/ascending2.png";
+		collisionSegmentImages.push(ascendingTexture2);
+		var ascendingTexture3 = new Image();
+		ascendingTexture3.src = "images/SegmentTextures/ascending3.png";
+		collisionSegmentImages.push(ascendingTexture3);
+		var ascendingTexture4 = new Image();
+		ascendingTexture4.src = "images/SegmentTextures/ascending4.png";
+		collisionSegmentImages.push(ascendingTexture4);
+		var flatTexture1 = new Image();
+		flatTexture1.src = "images/SegmentTextures/level1.png";
+		collisionSegmentImages.push(flatTexture1);
+		var flatTexture2 = new Image();
+		flatTexture2.src = "images/SegmentTextures/level2.png";
+		collisionSegmentImages.push(flatTexture2);
+		var descendingTexture1 = new Image();
+		descendingTexture1.src = "images/SegmentTextures/descending1.png";
+		collisionSegmentImages.push(descendingTexture1);
+		var descendingTexture2 = new Image();
+		descendingTexture2.src = "images/SegmentTextures/descending2.png";
+		collisionSegmentImages.push(descendingTexture2);
+		var descendingTexture3 = new Image();
+		descendingTexture3.src = "images/SegmentTextures/descending3.png";
+		collisionSegmentImages.push(descendingTexture3);
+		var descendingTexture4 = new Image();
+		descendingTexture4.src = "images/SegmentTextures/descending4.png";
+		collisionSegmentImages.push(descendingTexture4);
 		
 		// makes circular linked list
 		var firstSegment;
-       
 		for(var i = 0; i< 5; i++ )
 		{
-			collisionSegments[i] = new CollisionSegment(i*(screenSize.width / 4), screenSize.height-(screenSize.width / 4), ascendingTexture, flatTexture, descendingTexture);
+			collisionSegments[i] = new CollisionSegment(i*(screenSize.width / 4), screenSize.height-(screenSize.width / 4), collisionSegmentImages);
 			if( i == 0 ) {
 				firstSegment = collisionSegments[i];
 			} else {
 				collisionSegments[i].setPrevious(collisionSegments[i-1]);
 			}
 		}
-		
 		collisionSegments[0].setPrevious(collisionSegments[collisionSegments.length-1]);
 		
 		
@@ -258,7 +277,7 @@ function main(){
 	function checkCollisions(){
 		for(var i=0; i < collisionSegments.length; i++){
 			if((collisionSegments[i].getPosition().X > (bird.getPosition().X-200)) && (collisionSegments[i].getPosition().X < bird.getPosition().X+bird.getSize().width)){
-				if(collisionSegments[i].getTexture().src == collisionSegmentImages[0].src){
+				if(collisionSegments[i].getType() == "ascending"){
 					
 					var birdCollisionY = (bird.getPosition().Y + 128);
 					var birdCollisionX = bird.getPosition().X + 64;
@@ -269,15 +288,15 @@ function main(){
 						var blockHeight = (collisionSegments[i].getPosition().Y + 106) - (106*percentageAcross);
 						
 						
-						if((birdCollisionY > blockHeight) && (percentageAcross < 1)){
+						if(((birdCollisionY-5) > blockHeight) && (percentageAcross < 1)){
 							killBird();
 						}
 					}
-				}else if(collisionSegments[i].getTexture().src == collisionSegmentImages[1].src){
+				}else if(collisionSegments[i].getType() == "flat"){
 					if(bird.getPosition().Y > (collisionSegments[i].getPosition().Y-22)){
 						killBird();
 					}
-				}else if(collisionSegments[i].getTexture().src == collisionSegmentImages[2].src){
+				}else if(collisionSegments[i].getType() == "descending"){
 					var birdCollisionY = (bird.getPosition().Y + 128);
 					var birdCollisionX = bird.getPosition().X + 64;
 					

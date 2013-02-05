@@ -48,7 +48,6 @@ function Pickup(spiderTexture, butterflySprite, segmentY) {
 	
 	this.stopAnimation = function(){
 		clearInterval(interval);
-		console.log("test");
 	};
 	
 	var interval = setInterval(animate, 50);
