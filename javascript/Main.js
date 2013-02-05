@@ -14,7 +14,7 @@ function main(){
 	
 	var pickups = [];
 	var pickupSpider;
-	var pickupBooster;
+	var pickupButterfly;
 	var trees = [];
 	var treeImage;
 
@@ -39,7 +39,7 @@ function main(){
     // drawing the skybox
     var sky;
 
-    var mainLoop = function() { 
+    var mainLoop = function() {
         context.clearRect(0, 0, screenSize.width, screenSize.height);
 		
         manageInput(); 
@@ -51,10 +51,9 @@ function main(){
 	}
 	
 	function initialize(){
-		var audioBackground = document.createElement('audio');
-		audioBackground.src = "audio/Magellan9.mp3";
-		audioBackground.volume = 0.1;
-		audioBackground.play();
+		var backgroundAudio = document.getElementById('audioBackground');
+		backgroundAudio.volume = 0.1;
+		
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
@@ -72,17 +71,23 @@ function main(){
 		}
 		bird = new Bird(birdTextures, explosionTextures);
 		
-		pickupSpider = new Image();
-		pickupSpider.src="images/TroysPickup.png";
+		pickupSpider = [];
+		for(var i=0; i<7; i++){
+			pickupSpider[i] = new Image();
+			pickupSpider[i].src = "images/Pickups/Spider/spider" + (i+1) + ".png";
+		}
 		
-		pickupBooster = new Image();
-		pickupBooster.src="images/TroysPickupBooster.png";
+		pickupButterfly = [];
+		for(var i=0; i<9; i++){
+			pickupButterfly[i] = new Image();
+			pickupButterfly[i].src = "images/Pickups/Butterfly/butterfly" + (i+1) + ".png";
+		}
 		
 		treeImage = new Image();
 		treeImage.src = "images/spiderTree.png";
 		
 		var ascendingTexture = new Image();
-		ascendingTexture.src = "images/ascending.png";
+		ascendingTexture.src = "images/SegmentTextures/ascending1.png";
 		collisionSegmentImages.push(ascendingTexture);
 		var flatTexture = new Image();
 		flatTexture.src = "images/level.png";
@@ -243,7 +248,7 @@ function main(){
 					rightestSegment = collisionSegments[i];
 				}
 			}
-			pickups.push(new Pickup(pickupSpider, pickupBooster, utill.randomRange(rightestSegment.getPosition().Y-60)));
+			pickups.push(new Pickup(pickupSpider, pickupButterfly, utill.randomRange(rightestSegment.getPosition().Y-60)));
 			if(pickups[pickups.length-1].getIsBooster() == 0){
 				trees.push(new treeSpider(pickups[pickups.length-1].getPosition(), treeImage));
 			}
@@ -265,12 +270,12 @@ function main(){
 						
 						
 						if((birdCollisionY > blockHeight) && (percentageAcross < 1)){
-							bird.kill();
+							killBird();
 						}
 					}
 				}else if(collisionSegments[i].getTexture().src == collisionSegmentImages[1].src){
 					if(bird.getPosition().Y > (collisionSegments[i].getPosition().Y-22)){
-						bird.kill();
+						killBird();
 					}
 				}else if(collisionSegments[i].getTexture().src == collisionSegmentImages[2].src){
 					var birdCollisionY = (bird.getPosition().Y + 128);
@@ -282,7 +287,7 @@ function main(){
 						var blockHeight = (collisionSegments[i].getPosition().Y) + (106*percentageAcross);
 						
 						if(birdCollisionY > blockHeight){
-							bird.kill();
+							killBird();
 						}
 					}
 				}
@@ -316,7 +321,7 @@ function main(){
 		}
 		
 		if(bird.getPosition().Y < -30){
-			bird.kill();
+			killBird();
 		}
 	}
 	
@@ -338,6 +343,15 @@ function main(){
 		if(bird.getIsDead() == false){
 			score++;
 			document.getElementById("theParagraph").innerHTML = score;
+		}
+	}
+	
+	function killBird(){
+		if(!bird.getIsDead()){
+			bird.kill();
+			for(var i=0; i<pickups.length; i++){
+				pickups[i].stopAnimation();
+			}
 		}
 	}
 	initialize();

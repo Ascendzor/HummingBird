@@ -1,6 +1,7 @@
-function Pickup(texture, boosterTexture, segmentY) {
+function Pickup(spiderTexture, butterflySprite, segmentY) {
 	
 	var isBooster = utill.randomRange(2);
+	var animationIndex = 0;
 	
 	var position = {
 		X: screenSize.width,
@@ -18,11 +19,20 @@ function Pickup(texture, boosterTexture, segmentY) {
 	
 	this.draw = function(){
 		if(isBooster == 0){
-			context.drawImage(texture, position.X, position.Y, size.width, size.height);
+			position.Y += 0.5;
+			context.drawImage(spiderTexture[animationIndex], position.X, position.Y, size.width, size.height);
 		}else{
-			context.drawImage(boosterTexture, position.X, position.Y, size.width, size.height);
+			context.drawImage(butterflySprite[animationIndex], position.X, position.Y, size.width, size.height);
 		}
 	};
+	
+	var animate = function() {
+		if(isBooster == 0){
+			animationIndex = (animationIndex+1) % spiderTexture.length;
+		}else{
+			animationIndex = (animationIndex + 1) % butterflySprite.length;
+		}
+    };
 	
 	this.getPosition = function(){
 		return position;
@@ -35,4 +45,11 @@ function Pickup(texture, boosterTexture, segmentY) {
 	this.getIsBooster = function(){
 		return isBooster;
 	};
+	
+	this.stopAnimation = function(){
+		clearInterval(interval);
+		console.log("test");
+	};
+	
+	var interval = setInterval(animate, 50);
 };

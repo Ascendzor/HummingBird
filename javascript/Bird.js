@@ -69,7 +69,6 @@ function Bird(textures, explosionTextures){
 		if(isDead){
 			context.drawImage(explosionTextures[explosionAnimationIndex], x-64, y-64, 256, 256);
 		}
-		
 		if(explosionAnimationIndex < 3){
 			context.drawImage(activeTexture, x, y, 128, 128);
 		}
