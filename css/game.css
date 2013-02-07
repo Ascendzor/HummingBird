@@ -1,0 +1,15 @@
+div #scoreboard {
+    position: relative;
+    font-family: 'Sacramento', cursive;
+    font-size: 25px;
+    width : 515px;
+    height: 255px;
+    background-image: url("../images/textbackground.png");
+    margin-top: -550px;
+    margin-left: 100px;
+    padding-left: 85px;
+    padding-top: 60px;
+}
+#scoreboard ul {
+    list-style: none;
+}

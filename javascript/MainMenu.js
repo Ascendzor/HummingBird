@@ -78,7 +78,7 @@ function MainMenu() {
         if (!isActive) {
             return;
         };
-		console.log(isActive);
+		//console.log(isActive);
 		context.clearRect(0, 0, screenSize.width, screenSize.height);
 		context.drawImage(images["images/SPLASH2.png"], -130, -40);
 		for(var i=0; i<buttons.length; i++){

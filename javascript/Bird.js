@@ -71,7 +71,7 @@ function Bird(textures, explosionTextures){
 		}
 		if(explosionAnimationIndex < 3){
 			context.drawImage(activeTexture, x, y, 128, 128);
-		}
+		} 
 	};
 	
 	this.getIsDead = function(){
@@ -82,7 +82,7 @@ function Bird(textures, explosionTextures){
 		if(!isDead){
 			intervalExplode = setInterval(explode, 70);
 			isDead = true;
-			setTimeout(function(){Scoreboard();}, 4000)
+			setTimeout(function(){Scoreboard();}, 1500)
 		};
 	};
 	
