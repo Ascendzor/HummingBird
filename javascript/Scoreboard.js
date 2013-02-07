@@ -6,12 +6,9 @@ function Scoreboard(){
     var canvasOffsetTop;
 
     var buttons = [];
-	
-	var isActive;
+	var intervals = [];
 
     function initialize () {
-		isActive = true;
-	
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
@@ -26,7 +23,7 @@ function Scoreboard(){
 			img: images["images/Buttons/play.png"],
 			x: 5,
 			y: 470,
-			onClick: function(){main();}
+			onClick: function(){main();console.log("PLAY");}
 		};
 		
 		buttons[1] = {
@@ -37,38 +34,12 @@ function Scoreboard(){
                 Credits();}
 		};
 		
-        setInterval(update, ONE_FRAME_TIME);
+        intervals.push(setInterval(update, ONE_FRAME_TIME));
+		activateState(buttons, intervals);
     }
-
-    // canvas click handler
-    function clickHandler (click) {
-		if(!isActive){
-			return;
-		};
-        console.log(click.pageX);
-        last_click = {
-            x: click.pageX - canvasOffsetLeft,
-            y: click.pageY - canvasOffsetTop
-        };
-        console.log(last_click);
-		
-		for(var i=0; i<buttons.length; i++){
-			if(last_click.x > buttons[i].x){
-				if(last_click.y > buttons[i].y){
-					if(last_click.x < (buttons[i].x+buttons[i].img.width)){
-						if(last_click.y < (buttons[i].y+buttons[i].img.height)){
-							isActive = false;
-							buttons[i].onClick();
-						}
-					}
-				}
-			}
-		}
-    }
+	
     function update() {
-        if (!isActive) {
-            return;
-        };
+		console.log("updating Scoreboard");
 		context.clearRect(0, 0, screenSize.width, screenSize.height);
 		context.drawImage(images["images/SPLASH2.png"], -130, -40);
 		for(var i=0; i<buttons.length; i++){

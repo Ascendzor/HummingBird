@@ -1,4 +1,7 @@
 var images;
+
+var canvasOffsetLeft;
+var canvasOffsetTop;
 function loadFiles(){
 		var loadedImages = 0;
 		images = [];
@@ -69,6 +72,16 @@ function loadFiles(){
 						"images/Buttons/play.png",
 						"images/Buttons/credits.png",
 						"images/Buttons/info.png"];
+						
+	
+	var canvas = document.getElementById('myCanvas');
+	canvas.width = screenSize.width;
+	canvas.height = screenSize.height;
+
+    canvasOffsetLeft = canvas.offsetLeft;
+    canvasOffsetTop = canvas.offsetTop;
+	
+	
 	function handleLoadedImage(){
 		loadedImages++;
 		if(loadedImages == theImages.length){

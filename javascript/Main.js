@@ -39,6 +39,7 @@ function main(){
     // drawing the skybox
     var sky;
 	
+	var buttons = [];
 	var intervals = [];
 
     var mainLoop = function() {
@@ -53,6 +54,7 @@ function main(){
 	}
 	
 	function initialize(){
+		console.log("initializing Main");
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
@@ -123,6 +125,8 @@ function main(){
         intervals.push(setInterval(heartbeat_sample, 1000));
 		intervals.push(setInterval(spawnPickup, (collisionSegments[0].getWidth()/collisionSegments[0].getVelocity().X)*(ONE_FRAME_TIME)));
 		intervals.push(setInterval(increaseBps, 15000));
+		
+		activateState(buttons, intervals);
 	}
 	
 	function manageInput(){
