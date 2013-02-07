@@ -349,15 +349,19 @@ function main(){
 		}
 	}
 	
+	function clearer(){
+		for(var i=0; i<intervals.length; i++){
+			clearInterval(intervals[i]);
+		}
+	}
+	
 	function killBird(){
 		if(!bird.getIsDead()){
 			bird.kill();
 			for(var i=0; i<pickups.length; i++){
 				pickups[i].stopAnimation();
 			}
-			for(var i=0; i<intervals.length; i++){
-				clearInterval(intervals[i]);
-			}
+			setTimeout(clearer, 4000);
 		}
 	}
 	initialize();
