@@ -10,6 +10,20 @@ div #scoreboard {
     padding-left: 85px;
     padding-top: 60px;
 }
+
+div #MainMenu {
+    position: relative;
+    font-family: 'Sacramento', cursive;
+    font-size: 25px;
+    width : 515px;
+    height: 255px;
+    background-image: url("../images/textbackground.png");
+    margin-top: -550px;
+    margin-left: 100px;
+    padding-left: 85px;
+    padding-top: 60px;
+}
+
 #scoreboard ul {
     list-style: none;
 }
@@ -22,7 +36,15 @@ div #scoreboard {
     margin-top:78px;
     float: left;
 }
-#creditsbutton {
+div #scoreboardbutton {
+    background-image: url("../images/Buttons/info.png");
+    width: 319px;
+    height: 219px;
+    margin-left:-150px;
+    margin-top:100px;
+}
+
+div #creditsbutton {
     background-image: url("../images/Buttons/credits.png");
     width: 443px;
     height: 219px;

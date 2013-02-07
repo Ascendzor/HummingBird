@@ -33,8 +33,7 @@ function Scoreboard(){
         butterflysEaten = 5;
         maxHeartRate = 300;
         totalScore = 9001;
-
-
+		
         var gameContainer = document.getElementById("gamecontainer");
         scoreDiv = document.createElement("div");
         scoreDiv.setAttribute('id','scoreboard');
@@ -58,7 +57,6 @@ function Scoreboard(){
         scoreDiv.appendChild(buttonCredits);
 
         gameContainer.appendChild(scoreDiv);
-
     }
     function cleanup () {
         var gameContainer = document.getElementById("gamecontainer");
