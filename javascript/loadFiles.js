@@ -66,7 +66,6 @@ function loadFiles(){
 						"images/sun.png",
 						"images/textbackground.png",
 						"images/tree.png"];
-						
 	function handleLoadedImage(){
 		loadedImages++;
 		if(loadedImages == theImages.length){
@@ -75,7 +74,6 @@ function loadFiles(){
 	};
 	
 	for(var i=0; i<theImages.length; i++){
-		console.log("?");
 		var tmpImage = new Image();
 		tmpImage.src = theImages[i];
 		images[theImages[i]] = tmpImage;

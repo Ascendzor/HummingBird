@@ -10,26 +10,20 @@ function Sky(velocity) {
 	var spawnNest;
 
     function init () {
-        var sunImage = new Image();
-        sunImage.src = "images/sun.png";
         theSun = {
-            img: sunImage,
+            img: images["images/sun.png"],
             position: {x:(screenSize.width-200), y:100}
         };
 
-        var skyTexture = new Image();
-        skyTexture.src = "images/backgroundtextured.png";
         sky = {
-            img:skyTexture,
+            img:images["images/backgroundtextured.png"],
             position: {x: 0, y:0},
             speed: velocity.X * 0.5
         };
         
         for (var i = 0; i < 3 ; i++) {
-            var imgElement = new Image();
-            imgElement.src = "images/cloud" + i + ".png";
             clouds[i] = {
-                img: imgElement,
+                img: images["images/cloud" + i + ".png"],
                 position: {
                     x:utill.randomRange(screenSize.width),
                     y:utill.randomRange(200)
@@ -39,10 +33,8 @@ function Sky(velocity) {
         };
         clouds[2].speed = (clouds[1].speed*3);
 		
-		var middleHillsImage = new Image();
-		middleHillsImage.src = "images/hills2.png";
 		middleHills = {
-			img: middleHillsImage,
+			img: images["images/hills2.png"],
 			position0: {x: 0, 
 						y:(screenSize.height-601)
 			},
@@ -59,18 +51,14 @@ function Sky(velocity) {
 			speed: velocity.X * 0.15
 		};
 		
-		var spawnTreeImage = new Image();
-		spawnTreeImage.src = "images/tree.png";
 		spawnTree = {
-			img: spawnTreeImage,
+			img: images["images/tree.png"],
 			position: {x: 70, y:(screenSize.height-600)},
 			speed: velocity.X
 		};
 		
-		var spawnNestImage = new Image();
-		spawnNestImage.src = "images/nest.png";
 		spawnNest = {
-			img: spawnNestImage,
+			img: images["images/nest.png"],
 			position: {x: (spawnTree.position.x + 80), y: (spawnTree.position.y + 90)},
 			speed: spawnTree.speed
 		};

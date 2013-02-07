@@ -33,20 +33,15 @@ function ColdSplash () {
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
 		context = canvas.getContext('2d');
-
-        var logoImg= new Image();
-        logoImg.src = "images/splashscreen/logo.png";
-
+		console.log(images["images/splashscreen/logo.png"]);
         logo = {
-            img: logoImg,
-            position: {x:(screenSize.width/2)-(logoImg.width/2), y:(screenSize.height/2)-(logoImg.height/2)}
+            img: images["images/splashscreen/logo.png"],
+            position: {x:(screenSize.width/2)-(images["images/splashscreen/logo.png"].width/2), y:(screenSize.height/2)-(images["images/splashscreen/logo.png"].height/2)}
         }
 
         for (var i = 0; i < 100; i++) {
-            var snowFlakeImage= new Image();
-            snowFlakeImage.src = "images/splashscreen/icemedium" + utill.randomRange(4) + ".png";
             var snowFlakeObject = {
-                img: snowFlakeImage,
+                img: images["images/splashscreen/icemedium" + utill.randomRange(4) + ".png"],
                 velocity: {x:get_x_velocity(),y:get_y_velocity()},
                 position: get_start_position(),
                 rotation: get_rotation(),
