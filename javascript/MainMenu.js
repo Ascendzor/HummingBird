@@ -44,14 +44,10 @@ function MainMenu() {
 
     // canvas click handler
     function update() {
-<<<<<<< HEAD
         if (!isActive) {
             return;
         };
 		//console.log(isActive);
-=======
-		console.log("updating MainMenu");
->>>>>>> d48c6ac77bf74433a083a468be791bb76f4fc532
 		context.clearRect(0, 0, screenSize.width, screenSize.height);
 		context.drawImage(images["images/SPLASH2.png"], -130, -40);
 		for(var i=0; i<buttons.length; i++){
