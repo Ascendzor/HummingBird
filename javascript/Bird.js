@@ -82,6 +82,7 @@ function Bird(textures, explosionTextures){
 		if(!isDead){
 			intervalExplode = setInterval(explode, 70);
 			isDead = true;
+			setTimeout(function(){Scoreboard();}, 4000)
 		};
 	};
 	

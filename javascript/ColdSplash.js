@@ -60,7 +60,6 @@ function ColdSplash () {
 
         context.fillStyle = "rgb(45, 39, 111)";
         context.fillRect(0, 0, screenSize.width, screenSize.height);
-		console.log("still happenning");
         //draw all the snowflakes
         for (var i = 0; i < snowflakes.length; i++) {
             var snowflake = snowflakes[i];

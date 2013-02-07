@@ -55,7 +55,6 @@ function MainMenu() {
 			return;
 		}
 		
-        console.log(click.pageX);
         last_click = {
             x: click.pageX - canvasOffsetLeft,
             y: click.pageY - canvasOffsetTop
@@ -74,12 +73,12 @@ function MainMenu() {
 			}
 		}
         console.log(last_click);
-
     }
     function update() {
         if (!isActive) {
             return;
         };
+		console.log(isActive);
 		context.clearRect(0, 0, screenSize.width, screenSize.height);
 		context.drawImage(images["images/SPLASH2.png"], -130, -40);
 		for(var i=0; i<buttons.length; i++){

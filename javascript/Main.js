@@ -38,6 +38,8 @@ function main(){
 	
     // drawing the skybox
     var sky;
+	
+	var intervals = [];
 
     var mainLoop = function() {
         context.clearRect(0, 0, screenSize.width, screenSize.height);
@@ -117,10 +119,10 @@ function main(){
         sky = new Sky(collisionSegments[0].getVelocity());
 		
         // schdule main loop updated
-        setInterval(mainLoop, ONE_FRAME_TIME);
-        setInterval(heartbeat_sample, 1000);
-		setInterval(spawnPickup, (collisionSegments[0].getWidth()/collisionSegments[0].getVelocity().X)*(ONE_FRAME_TIME));
-		setInterval(increaseBps, 15000);
+        intervals.push(setInterval(mainLoop, ONE_FRAME_TIME));
+        intervals.push(setInterval(heartbeat_sample, 1000));
+		intervals.push(setInterval(spawnPickup, (collisionSegments[0].getWidth()/collisionSegments[0].getVelocity().X)*(ONE_FRAME_TIME)));
+		intervals.push(setInterval(increaseBps, 15000));
 	}
 	
 	function manageInput(){
@@ -352,6 +354,9 @@ function main(){
 			bird.kill();
 			for(var i=0; i<pickups.length; i++){
 				pickups[i].stopAnimation();
+			}
+			for(var i=0; i<intervals.length; i++){
+				clearInterval(intervals[i]);
 			}
 		}
 	}
