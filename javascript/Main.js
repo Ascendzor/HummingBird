@@ -58,60 +58,45 @@ function main(){
 
         var birdTextures = [];
         for (var i = 0; i < 4; i++) {
-            birdTextures[i] = new Image();
-            birdTextures[i].src = "images/birdy/bird" + i + ".png";
+            birdTextures[i] = images["images/birdy/bird" + i + ".png"];
         };
 		var explosionTextures = [];
 		for(var i=0; i<10; i++){
-			explosionTextures[i] = new Image();
-			explosionTextures[i].src = "images/birdy/explosion/explosion" + (i+1) + ".png";
+			explosionTextures[i] = images["images/birdy/explosion/explosion" + (i+1) + ".png"];
 		}
 		bird = new Bird(birdTextures, explosionTextures);
 		
 		pickupSpider = [];
 		for(var i=0; i<7; i++){
-			pickupSpider[i] = new Image();
-			pickupSpider[i].src = "images/Pickups/Spider/spider" + (i+1) + ".png";
+			pickupSpider[i] = images["images/Pickups/Spider/spider" + (i+1) + ".png"];
 		}
 		
 		pickupButterfly = [];
 		for(var i=0; i<9; i++){
-			pickupButterfly[i] = new Image();
-			pickupButterfly[i].src = "images/Pickups/Butterfly/butterfly" + (i+1) + ".png";
+			pickupButterfly[i] = images["images/Pickups/Butterfly/butterfly" + (i+1) + ".png"];
 		}
 		
-		treeImage = new Image();
-		treeImage.src = "images/spiderTree.png";
+		treeImage = images["images/spiderTree.png"];
 		
-		var ascendingTexture1 = new Image();
-		ascendingTexture1.src = "images/SegmentTextures/ascending1.png";
+		var ascendingTexture1 = images["images/SegmentTextures/ascending1.png"];
 		collisionSegmentImages.push(ascendingTexture1);
-		var ascendingTexture2 = new Image();
-		ascendingTexture2.src = "images/SegmentTextures/ascending2.png";
+		var ascendingTexture2 = images["images/SegmentTextures/ascending2.png"];
 		collisionSegmentImages.push(ascendingTexture2);
-		var ascendingTexture3 = new Image();
-		ascendingTexture3.src = "images/SegmentTextures/ascending3.png";
+		var ascendingTexture3 = images["images/SegmentTextures/ascending3.png"];
 		collisionSegmentImages.push(ascendingTexture3);
-		var ascendingTexture4 = new Image();
-		ascendingTexture4.src = "images/SegmentTextures/ascending4.png";
+		var ascendingTexture4 = images["images/SegmentTextures/ascending4.png"];
 		collisionSegmentImages.push(ascendingTexture4);
-		var flatTexture1 = new Image();
-		flatTexture1.src = "images/SegmentTextures/level1.png";
+		var flatTexture1 = images["images/SegmentTextures/level1.png"];
 		collisionSegmentImages.push(flatTexture1);
-		var flatTexture2 = new Image();
-		flatTexture2.src = "images/SegmentTextures/level2.png";
+		var flatTexture2 = images["images/SegmentTextures/level2.png"];
 		collisionSegmentImages.push(flatTexture2);
-		var descendingTexture1 = new Image();
-		descendingTexture1.src = "images/SegmentTextures/descending1.png";
+		var descendingTexture1 = images["images/SegmentTextures/descending1.png"];
 		collisionSegmentImages.push(descendingTexture1);
-		var descendingTexture2 = new Image();
-		descendingTexture2.src = "images/SegmentTextures/descending2.png";
+		var descendingTexture2 = images["images/SegmentTextures/descending2.png"];
 		collisionSegmentImages.push(descendingTexture2);
-		var descendingTexture3 = new Image();
-		descendingTexture3.src = "images/SegmentTextures/descending3.png";
+		var descendingTexture3 = images["images/SegmentTextures/descending3.png"];
 		collisionSegmentImages.push(descendingTexture3);
-		var descendingTexture4 = new Image();
-		descendingTexture4.src = "images/SegmentTextures/descending4.png";
+		var descendingTexture4 = images["images/SegmentTextures/descending4.png"];
 		collisionSegmentImages.push(descendingTexture4);
 		
 		// makes circular linked list

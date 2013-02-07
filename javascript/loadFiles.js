@@ -72,7 +72,7 @@ function loadFiles(){
 		if(loadedImages == theImages.length){
 			ColdSplash();
 		}
-	}
+	};
 	
 	for(var i=0; i<theImages.length; i++){
 		console.log("?");
@@ -80,5 +80,5 @@ function loadFiles(){
 		tmpImage.src = theImages[i];
 		images[theImages[i]] = tmpImage;
 		tmpImage.onload = handleLoadedImage;
-	}
+	};
 }
