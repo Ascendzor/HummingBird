@@ -42,7 +42,8 @@ function MainMenu() {
 			img: images["images/Buttons/credits.png"],
 			x: 540,
 			y: 470,
-			onClick: function(){Credits();}
+			onClick: function(){
+                Credits();}
 		};
 		
         setInterval(update, ONE_FRAME_TIME);
@@ -76,6 +77,9 @@ function MainMenu() {
 
     }
     function update() {
+        if (!isActive) {
+            return;
+        };
 		context.clearRect(0, 0, screenSize.width, screenSize.height);
 		context.drawImage(images["images/SPLASH2.png"], -130, -40);
 		for(var i=0; i<buttons.length; i++){
