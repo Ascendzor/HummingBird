@@ -55,8 +55,6 @@ function ColdSplash () {
             };
             snowflakes.push(snowFlakeObject);
         };
-
-        console.log(snowflakes);
         timers.push(setInterval(update, ONE_FRAME_TIME));
         timers.push(setTimeout(segue, 1000));
     }
@@ -98,7 +96,7 @@ function ColdSplash () {
         };
         
         //draw our logo
-        context.drawImage(logo.img, logo.position.x, logo.position.y);
+        context.drawImage(logo.img, logo.position.x, logo.position.y, 800, 600);
     }
     // Moves onto the next scene
     function segue () {

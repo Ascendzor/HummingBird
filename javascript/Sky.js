@@ -52,10 +52,8 @@ function Sky(velocity) {
 			speed: velocity.X * 0.4
 		};
 		
-		var hillImage = new Image();
-		hillImage.src = "images/hills.png";
 		theHills = {
-			img: hillImage,
+			img: images["images/hills.png"],
 			position0: {x: 0, y:(screenSize.height-601)},
 			position1: {x: 2001, y:(screenSize.height-601)},
 			speed: velocity.X * 0.15

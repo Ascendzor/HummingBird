@@ -7,7 +7,6 @@ var screenSize = {
 var ONE_FRAME_TIME = 100/6;
 
 function main(){ 
-	
     var bird;
 
     var collisionSegments = []; 

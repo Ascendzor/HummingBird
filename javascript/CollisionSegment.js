@@ -1,7 +1,6 @@
 function CollisionSegment(x, y, newTextures){
 	var textures = newTextures;
 	var texture = textures[5];
-	console.log(textures);
     var width = screenSize.width / 4;
     var height = 400;
 	var type = "flat";
