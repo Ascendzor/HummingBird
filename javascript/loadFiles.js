@@ -65,7 +65,10 @@ function loadFiles(){
 						"images/splashscreen/logo.png",
 						"images/sun.png",
 						"images/textbackground.png",
-						"images/tree.png"];
+						"images/tree.png",
+						"images/Buttons/play.png",
+						"images/Buttons/credits.png",
+						"images/Buttons/info.png"];
 	function handleLoadedImage(){
 		loadedImages++;
 		if(loadedImages == theImages.length){

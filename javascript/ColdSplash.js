@@ -11,6 +11,7 @@ function ColdSplash () {
     function get_x_velocity() {
         return -(1 / (utill.randomRange(5) + 1));
     };
+	
     function get_y_velocity() {
         return 1/(utill.randomRange(2) + 1);
     };
@@ -59,7 +60,7 @@ function ColdSplash () {
 
         context.fillStyle = "rgb(45, 39, 111)";
         context.fillRect(0, 0, screenSize.width, screenSize.height);
-
+		console.log("still happenning");
         //draw all the snowflakes
         for (var i = 0; i < snowflakes.length; i++) {
             var snowflake = snowflakes[i];
@@ -96,7 +97,10 @@ function ColdSplash () {
     // Moves onto the next scene
     function segue () {
         console.log("segueing to main game");
-        main();
+		for(var i=0; i<timers.length; i++){
+			clearInterval(timers[i]);
+		}
+        MainMenu();
     }
     initialize();
 }
