@@ -2,6 +2,9 @@
 //
 // Draws the cold studios logo with a background of rotating snowflakes
 //
+
+var hillsImage;
+
 function ColdSplash () {
     var snowflakes = [];
     var logo;
@@ -26,6 +29,9 @@ function ColdSplash () {
     }
 
     function initialize () {
+		var backgroundAudio = document.getElementById('audioBackground');
+		backgroundAudio.volume = 0.3;
+		
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
@@ -39,8 +45,6 @@ function ColdSplash () {
             position: {x:(screenSize.width/2)-(logoImg.width/2), y:(screenSize.height/2)-(logoImg.height/2)}
         }
 
-
-        
         for (var i = 0; i < 100; i++) {
             var snowFlakeImage= new Image();
             snowFlakeImage.src = "images/splashscreen/icemedium" + utill.randomRange(4) + ".png";
@@ -49,15 +53,20 @@ function ColdSplash () {
                 velocity: {x:get_x_velocity(),y:get_y_velocity()},
                 position: get_start_position(),
                 rotation: get_rotation(),
-                rotationDirection: utill.randomrange(2) - 1,
+                rotationDirection: utill.randomRange(2) - 1,
                 rotationRate: 1
             };
             snowflakes.push(snowFlakeObject);
         };
 
         console.log(snowflakes);
+		
+		//troys test shit
+		hillsImage = new Image();
+		hillsImage.src = "hills0.png";
+		//end of troys test shit
         timers.push(setInterval(update, ONE_FRAME_TIME));
-        //timers.push(setTimeout(segue, 1000));
+        timers.push(setTimeout(segue, 1000));
     }
 
     function update() {
