@@ -2,9 +2,6 @@
 //
 // Draws the cold studios logo with a background of rotating snowflakes
 //
-
-var hillsImage;
-
 function ColdSplash () {
     var snowflakes = [];
     var logo;
@@ -30,7 +27,7 @@ function ColdSplash () {
 
     function initialize () {
 		var backgroundAudio = document.getElementById('audioBackground');
-		backgroundAudio.volume = 0.3;
+		backgroundAudio.volume = 0.1;
 		
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
@@ -60,11 +57,6 @@ function ColdSplash () {
         };
 
         console.log(snowflakes);
-		
-		//troys test shit
-		hillsImage = new Image();
-		hillsImage.src = "hills0.png";
-		//end of troys test shit
         timers.push(setInterval(update, ONE_FRAME_TIME));
         timers.push(setTimeout(segue, 1000));
     }
