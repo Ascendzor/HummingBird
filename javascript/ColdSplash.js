@@ -49,7 +49,7 @@ function ColdSplash () {
                 velocity: {x:get_x_velocity(),y:get_y_velocity()},
                 position: get_start_position(),
                 rotation: get_rotation(),
-                rotationDirection: utill.randomrange(2) - 1,
+                rotationDirection: utill.randomRange(2) - 1,
                 rotationRate: 1
             };
             snowflakes.push(snowFlakeObject);
@@ -57,7 +57,7 @@ function ColdSplash () {
 
         console.log(snowflakes);
         timers.push(setInterval(update, ONE_FRAME_TIME));
-        //timers.push(setTimeout(segue, 1000));
+        timers.push(setTimeout(segue, 1000));
     }
 
     function update() {
