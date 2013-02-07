@@ -1,5 +1,13 @@
 
 function Scoreboard(){
+    //store the last click on the canvas in this object
+    var last_click = { x:0,y:0};
+    var canvasOffsetLeft;
+    var canvasOffsetTop;
+
+    var buttons = [];
+
+	var isActive;
     var scoreDiv;
 
     var spidersEaten;
@@ -11,6 +19,15 @@ function Scoreboard(){
     var buttonCredits;
 
     function initialize () {
+		var canvas = document.getElementById('myCanvas');
+		canvas.width = screenSize.width;
+		canvas.height = screenSize.height;
+
+        canvasOffsetLeft = canvas.offsetLeft;
+        canvasOffsetTop = canvas.offsetTop;
+
+		context = canvas.getContext('2d');
+		
         // get thescore
         spidersEaten = 2;
         butterflysEaten = 5;

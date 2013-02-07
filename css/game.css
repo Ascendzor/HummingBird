@@ -28,16 +28,16 @@ div #MainMenu {
     list-style: none;
 }
 
-div #playbutton {
+#playbutton {
     background-image: url("../images/Buttons/play.png");
     width: 319px;
     height: 219px;
     margin-left:-150px;
-    margin-top:100px;
+    margin-top:78px;
+    float: left;
 }
-
 div #scoreboardbutton {
-    background-image: url("../images/Buttons/play.png");
+    background-image: url("../images/Buttons/info.png");
     width: 319px;
     height: 219px;
     margin-left:-150px;
@@ -48,4 +48,7 @@ div #creditsbutton {
     background-image: url("../images/Buttons/credits.png");
     width: 443px;
     height: 219px;
+    float: left;
+    margin-left:200px;
+    margin-top: -219px;
 }
