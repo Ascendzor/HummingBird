@@ -16,7 +16,7 @@ function MainMenu() {
         buttonNewGame = document.createElement("div");
         buttonNewGame.setAttribute('id', 'playbutton');
         buttonNewGame.addEventListener("click", function(){
-            MainMenu();
+            main();
             cleanup();
         });
 		
