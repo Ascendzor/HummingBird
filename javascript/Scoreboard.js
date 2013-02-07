@@ -14,6 +14,9 @@ function Scoreboard(){
     var maxHeartRate;
     var totalScore;
 
+    var buttonNewGame;
+    var buttonCredits;
+
     function initialize () {
 		isActive = true;
 	
@@ -25,69 +28,43 @@ function Scoreboard(){
         canvasOffsetTop = canvas.offsetTop;
 
 		context = canvas.getContext('2d');
-        canvas.addEventListener('click', clickHandler, false);
-		
-		buttons[0] = {
-			img: images["images/Buttons/play.png"],
-			x: 5,
-			y: 470,
-			onClick: function(){main();}
-		};
-		
-		buttons[1] = {
-			img: images["images/Buttons/credits.png"],
-			x: 540,
-			y: 470,
-			onClick: function(){
-                Credits();}
-		};
 		
         // get thescore
         spidersEaten = 2;
+        butterflysEaten = 5;
+        maxHeartRate = 300;
+        totalScore = 9001;
+
 
         var gameContainer = document.getElementById("gamecontainer");
         scoreDiv = document.createElement("div");
         scoreDiv.setAttribute('id','scoreboard');
-        scoreDiv.innerHTML = "<ul><li>Spiders Eaten: 2</li><li>Butterflys Eaten: 3</li><li> Max HeartRate: 300 bpm</li><li><b>Total Score: 9001</b></li></ul>";
+        scoreDiv.innerHTML = "<ul><li>Spiders Eaten: " + spidersEaten + " </li><li>Butterflys Eaten: " + butterflysEaten + "</li><li> Max HeartRate: " + maxHeartRate + " bpm</li><li><b>Total Score: " + totalScore + "</b></li></ul>";
+
+        buttonNewGame = document.createElement("div");
+        buttonNewGame.setAttribute('id', 'playbutton');
+        buttonNewGame.addEventListener("click", function(){
+            MainMenu();
+            cleanup();
+        });
+
+        buttonCredits= document.createElement("div");
+        buttonCredits.setAttribute('id', 'creditsbutton');
+        buttonCredits.addEventListener("click", function(){
+            Credits();
+            cleanup();
+        });
+
+        scoreDiv.appendChild(buttonNewGame);
+        scoreDiv.appendChild(buttonCredits);
 
         gameContainer.appendChild(scoreDiv);
 
-        setInterval(update, ONE_FRAME_TIME);
+    }
+    function cleanup () {
+        var gameContainer = document.getElementById("gamecontainer");
+        gameContainer.removeChild(scoreboard);
     }
 
-    // canvas click handler
-    function clickHandler (click) {
-		if(!isActive){
-			return;
-		};
-        console.log(click.pageX);
-        last_click = {
-            x: click.pageX - canvasOffsetLeft,
-            y: click.pageY - canvasOffsetTop
-        };
-        console.log(last_click);
-		
-		for(var i=0; i<buttons.length; i++){
-			if(last_click.x > buttons[i].x){
-				if(last_click.y > buttons[i].y){
-					if(last_click.x < (buttons[i].x+buttons[i].img.width)){
-						if(last_click.y < (buttons[i].y+buttons[i].img.height)){
-							isActive = false;
-							buttons[i].onClick();
-						}
-					}
-				}
-			}
-		}
-    }
-    function update() {
-        if (!isActive) {
-            return;
-        };
-		//context.drawImage(images["images/SPLASH2.png"], -130, -40);
-		for(var i=0; i<buttons.length; i++){
-			context.drawImage(buttons[i].img, buttons[i].x, buttons[i].y, 240, 131);
-		}
-    }
     initialize();
 }

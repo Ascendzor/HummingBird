@@ -13,3 +13,14 @@ div #scoreboard {
 #scoreboard ul {
     list-style: none;
 }
+
+div #playbutton {
+    background-image: url("../images/Buttons/play.png");
+    width: 319px;
+    height: 219px;
+}
+div #creditsbutton {
+    background-image: url("../images/Buttons/credits.png");
+    width: 443px;
+    height: 219px;
+}
