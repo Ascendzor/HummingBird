@@ -44,9 +44,6 @@ function MainMenu() {
 
     // canvas click handler
     function update() {
-        if (!isActive) {
-            return;
-        };
 		//console.log(isActive);
 		context.clearRect(0, 0, screenSize.width, screenSize.height);
 		context.drawImage(images["images/SPLASH2.png"], -130, -40);
