@@ -17,18 +17,50 @@ div #MainMenu {
     font-size: 25px;
     width : 515px;
     height: 255px;
-    background-image: url("../images/textbackground.png");
+    #background-image: url("");
     margin-top: -550px;
     margin-left: 100px;
     padding-left: 85px;
     padding-top: 60px;
 }
 
+div #MainMenuPlayButton{
+	background-image: url("../images/Buttons/play.png");
+	width: 319px;
+	height: 219px;
+	margin-left: -180px;
+	margin-top: 20px;
+}
+
+div #MainMenuScoreboard{
+	background-image: url("../images/Buttons/info.png");
+	width: 319px;
+	height: 219px;
+	margin-left: -180px;
+	margin-top: 20px;
+}
+
+div #MainMenuCredits{
+	background-image: url("../images/Buttons/credits.png");
+    width: 443px;
+    height: 219px;
+	margin-left: 160px;
+	margin-top: -217px;
+}
+
+div #MainMenuImageGuide{
+	background-image: url("../images/SPLASH2.png");
+	width: 450px;
+	height: 388px;
+	margin-left: 150px;
+	margin-top: -590px;
+}
+
 #scoreboard ul {
     list-style: none;
 }
 
-#playbutton {
+div #ScoreboardPlayButton {
     background-image: url("../images/Buttons/play.png");
     width: 319px;
     height: 219px;

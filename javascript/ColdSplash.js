@@ -52,7 +52,7 @@ function ColdSplash () {
             snowflakes.push(snowFlakeObject);
         };
         timers.push(setInterval(update, ONE_FRAME_TIME));
-        timers.push(setTimeout(segue, 1000));
+        timers.push(setTimeout(segue, 1));
     }
 
     function update() {
@@ -94,6 +94,8 @@ function ColdSplash () {
     }
     // Moves onto the next scene
     function segue () {
+		context.fillStyle = "rgb(0, 0, 0)";
+		context.fillRect(0, 0, screenSize.width, screenSize.height);
         console.log("segueing to main game");
 		for(var i=0; i<timers.length; i++){
 			clearInterval(timers[i]);

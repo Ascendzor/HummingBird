@@ -40,7 +40,7 @@ function Scoreboard(){
         scoreDiv.innerHTML = "<ul><li>Spiders Eaten: " + spidersEaten + " </li><li>Butterflys Eaten: " + butterflysEaten + "</li><li> Max HeartRate: " + maxHeartRate + " bpm</li><li><b>Total Score: " + totalScore + "</b></li></ul>";
 
         buttonNewGame = document.createElement("div");
-        buttonNewGame.setAttribute('id', 'playbutton');
+        buttonNewGame.setAttribute('id', 'ScoreboardPlayButton');
         buttonNewGame.addEventListener("click", function(){
             MainMenu();
             cleanup();
