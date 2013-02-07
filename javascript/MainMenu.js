@@ -1,55 +1,50 @@
 
 // draws the main menu
 function MainMenu() {
-
-    //store the last click on the canvas in this object
-    var last_click = {x:0,y:0};
-    var canvasOffsetLeft;
-    var canvasOffsetTop;
-
-    var buttons = [];
 	
-	var intervals = [];
-
+	var buttonNewGame;
+	var buttonScoreboard;
+	var buttonCredits;
+	
+	var scoreDiv;
+	
     function initialize () {
-		var canvas = document.getElementById('myCanvas');
-		context = canvas.getContext('2d');
+        var gameContainer = document.getElementById("gamecontainer");
+        scoreDiv = document.createElement("div");
+        scoreDiv.setAttribute('id','MainMenu');
+
+        buttonNewGame = document.createElement("div");
+        buttonNewGame.setAttribute('id', 'playbutton');
+        buttonNewGame.addEventListener("click", function(){
+            MainMenu();
+            cleanup();
+        });
 		
-        canvas.addEventListener('click', clickHandler, false);
-		
-		buttons[0] = {
-			img: images["images/Buttons/play.png"],
-			x: 5,
-			y: 470,
-			onClick: function(){main();}
-		};
-		
-		buttons[1] = {
-			img: images["images/Buttons/info.png"],
-			x: 270,
-			y: 470,
-			onClick: function(){Scoreboard();}
-		};
-		
-		buttons[2] = {
-			img: images["images/Buttons/credits.png"],
-			x: 540,
-			y: 470,
-			onClick: function(){Credits();}
-		};
-		
-        intervals.push(setInterval(update, ONE_FRAME_TIME));
-		activateState(buttons, intervals);
+		buttonScoreboard= document.createElement("div");
+        buttonScoreboard.setAttribute('id', 'scoreboardbutton');
+        buttonScoreboard.addEventListener("click", function(){
+            Scoreboard();
+            cleanup();
+        });
+
+        buttonCredits= document.createElement("div");
+        buttonCredits.setAttribute('id', 'creditsbutton');
+        buttonCredits.addEventListener("click", function(){
+            Credits();
+            cleanup();
+        });
+
+        scoreDiv.appendChild(buttonNewGame);
+		scoreDiv.appendChild(buttonScoreboard);
+        scoreDiv.appendChild(buttonCredits);
+
+        gameContainer.appendChild(scoreDiv);
+    }
+	
+    function cleanup () {
+        var gameContainer = document.getElementById("gamecontainer");
+        gameContainer.removeChild(scoreDiv);
     }
 
-    // canvas click handler
-    function update() {
-		//console.log(isActive);
-		context.clearRect(0, 0, screenSize.width, screenSize.height);
-		context.drawImage(images["images/SPLASH2.png"], -130, -40);
-		for(var i=0; i<buttons.length; i++){
-			context.drawImage(buttons[i].img, buttons[i].x, buttons[i].y, 240, 131);
-		}
-    }
     initialize();
 }

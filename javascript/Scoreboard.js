@@ -1,12 +1,5 @@
 
 function Scoreboard(){
-    //store the last click on the canvas in this object
-    var last_click = { x:0,y:0};
-    var canvasOffsetLeft;
-    var canvasOffsetTop;
-
-    var buttons = [];
-	var isActive;
     var scoreDiv;
 
     var spidersEaten;
@@ -18,21 +11,12 @@ function Scoreboard(){
     var buttonCredits;
 
     function initialize () {
-		var canvas = document.getElementById('myCanvas');
-		canvas.width = screenSize.width;
-		canvas.height = screenSize.height;
-
-        canvasOffsetLeft = canvas.offsetLeft;
-        canvasOffsetTop = canvas.offsetTop;
-
-		context = canvas.getContext('2d');
         // get thescore
         spidersEaten = 2;
         butterflysEaten = 5;
         maxHeartRate = 300;
         totalScore = 9001;
-
-
+		
         var gameContainer = document.getElementById("gamecontainer");
         scoreDiv = document.createElement("div");
         scoreDiv.setAttribute('id','scoreboard');
@@ -56,11 +40,10 @@ function Scoreboard(){
         scoreDiv.appendChild(buttonCredits);
 
         gameContainer.appendChild(scoreDiv);
-
     }
     function cleanup () {
         var gameContainer = document.getElementById("gamecontainer");
-        gameContainer.removeChild(scoreboard);
+        gameContainer.removeChild(scoreDiv);
     }
 
     initialize();
