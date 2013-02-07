@@ -4,8 +4,9 @@ var screenSize = {
 	height: 600
 };
 
+var ONE_FRAME_TIME = 100/6;
+
 function main(){ 
-    var ONE_FRAME_TIME = 100/6;
 	
     var bird;
 
