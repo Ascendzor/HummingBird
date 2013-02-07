@@ -72,7 +72,6 @@ function ColdSplash () {
             context.save(); //push the context onto stack so we can restore after messing with the coordinate system
             if (snowflake.rotation > 0) {
             } else {
-
             };
             context.rotate(snowflake.rotation);
             context.restore();

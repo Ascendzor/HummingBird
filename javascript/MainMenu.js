@@ -9,19 +9,12 @@ function MainMenu() {
 
     var buttons = [];
 	
-	var isActive;
+	var intervals = [];
 
     function initialize () {
 		var canvas = document.getElementById('myCanvas');
-		canvas.width = screenSize.width;
-		canvas.height = screenSize.height;
-
-        canvasOffsetLeft = canvas.offsetLeft;
-        canvasOffsetTop = canvas.offsetTop;
-
 		context = canvas.getContext('2d');
 		
-		isActive = true;
         canvas.addEventListener('click', clickHandler, false);
 		
 		buttons[0] = {
@@ -42,43 +35,23 @@ function MainMenu() {
 			img: images["images/Buttons/credits.png"],
 			x: 540,
 			y: 470,
-			onClick: function(){
-                Credits();}
+			onClick: function(){Credits();}
 		};
 		
-        setInterval(update, ONE_FRAME_TIME);
+        intervals.push(setInterval(update, ONE_FRAME_TIME));
+		activateState(buttons, intervals);
     }
 
     // canvas click handler
-    function clickHandler (click) {
-		if(!isActive){
-			return;
-		}
-		
-        last_click = {
-            x: click.pageX - canvasOffsetLeft,
-            y: click.pageY - canvasOffsetTop
-        };
-		
-		for(var i=0; i<buttons.length; i++){
-			if(last_click.x > buttons[i].x){
-				if(last_click.y > buttons[i].y){
-					if(last_click.x < (buttons[i].x+buttons[i].img.width)){
-						if(last_click.y < (buttons[i].y+buttons[i].img.height)){
-							isActive = false;
-							buttons[i].onClick();
-						}
-					}
-				}
-			}
-		}
-        console.log(last_click);
-    }
     function update() {
+<<<<<<< HEAD
         if (!isActive) {
             return;
         };
 		//console.log(isActive);
+=======
+		console.log("updating MainMenu");
+>>>>>>> d48c6ac77bf74433a083a468be791bb76f4fc532
 		context.clearRect(0, 0, screenSize.width, screenSize.height);
 		context.drawImage(images["images/SPLASH2.png"], -130, -40);
 		for(var i=0; i<buttons.length; i++){

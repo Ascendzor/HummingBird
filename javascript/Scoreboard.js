@@ -6,6 +6,7 @@ function Scoreboard(){
     var canvasOffsetTop;
 
     var buttons = [];
+<<<<<<< HEAD
 	var isActive;
     var scoreDiv;
 
@@ -16,10 +17,11 @@ function Scoreboard(){
 
     var buttonNewGame;
     var buttonCredits;
+=======
+	var intervals = [];
+>>>>>>> d48c6ac77bf74433a083a468be791bb76f4fc532
 
     function initialize () {
-		isActive = true;
-	
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
@@ -28,6 +30,7 @@ function Scoreboard(){
         canvasOffsetTop = canvas.offsetTop;
 
 		context = canvas.getContext('2d');
+<<<<<<< HEAD
 		
         // get thescore
         spidersEaten = 2;
@@ -64,6 +67,36 @@ function Scoreboard(){
     function cleanup () {
         var gameContainer = document.getElementById("gamecontainer");
         gameContainer.removeChild(scoreboard);
+=======
+        canvas.addEventListener('click', clickHandler, false);
+		
+		buttons[0] = {
+			img: images["images/Buttons/play.png"],
+			x: 5,
+			y: 470,
+			onClick: function(){main();console.log("PLAY");}
+		};
+		
+		buttons[1] = {
+			img: images["images/Buttons/credits.png"],
+			x: 540,
+			y: 470,
+			onClick: function(){
+                Credits();}
+		};
+		
+        intervals.push(setInterval(update, ONE_FRAME_TIME));
+		activateState(buttons, intervals);
+    }
+	
+    function update() {
+		console.log("updating Scoreboard");
+		context.clearRect(0, 0, screenSize.width, screenSize.height);
+		context.drawImage(images["images/SPLASH2.png"], -130, -40);
+		for(var i=0; i<buttons.length; i++){
+			context.drawImage(buttons[i].img, buttons[i].x, buttons[i].y, 240, 131);
+		}
+>>>>>>> d48c6ac77bf74433a083a468be791bb76f4fc532
     }
 
     initialize();
