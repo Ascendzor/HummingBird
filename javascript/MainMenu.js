@@ -50,7 +50,6 @@ function MainMenu() {
     function cleanup () {
         var gameContainer = document.getElementById("gamecontainer");
         gameContainer.removeChild(scoreDiv);
-		
     }
 
     initialize();

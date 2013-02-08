@@ -1,15 +1,4 @@
-
 function Scoreboard(){
-    //store the last click on the canvas in this object
-    var last_click = { x:0,y:0};
-    var canvasOffsetLeft;
-    var canvasOffsetTop;
-
-    var buttons = [];
-
-	var isActive;
-    var scoreDiv;
-
     var spidersEaten;
     var butterflysEaten;
     var maxHeartRate;
@@ -18,16 +7,9 @@ function Scoreboard(){
     var buttonNewGame;
     var buttonCredits;
 
+    var scoreDiv;
+
     function initialize () {
-		var canvas = document.getElementById('myCanvas');
-		canvas.width = screenSize.width;
-		canvas.height = screenSize.height;
-
-        canvasOffsetLeft = canvas.offsetLeft;
-        canvasOffsetTop = canvas.offsetTop;
-
-		context = canvas.getContext('2d');
-		
         // get thescore
         spidersEaten = 2;
         butterflysEaten = 5;
@@ -42,12 +24,12 @@ function Scoreboard(){
         buttonNewGame = document.createElement("div");
         buttonNewGame.setAttribute('id', 'ScoreboardPlayButton');
         buttonNewGame.addEventListener("click", function(){
-            MainMenu();
+            main();
             cleanup();
         });
 
         buttonCredits= document.createElement("div");
-        buttonCredits.setAttribute('id', 'creditsbutton');
+        buttonCredits.setAttribute('id', 'ScoreboardCreditsButton');
         buttonCredits.addEventListener("click", function(){
             Credits();
             cleanup();

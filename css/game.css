@@ -64,16 +64,16 @@ div #ScoreboardPlayButton {
     background-image: url("../images/Buttons/play.png");
     width: 319px;
     height: 219px;
-    margin-left:-150px;
-    margin-top:78px;
+    margin-left:-180px;
+    margin-top:68px;
     float: left;
 }
-div #scoreboardbutton {
-    background-image: url("../images/Buttons/info.png");
-    width: 319px;
+div #ScoreboardCreditsButton {
+    background-image: url("../images/Buttons/credits.png");
+    width: 443px;
     height: 219px;
-    margin-left:-150px;
-    margin-top:100px;
+    margin-left:163px;
+    margin-top:93px;
 }
 
 div #creditsbutton {

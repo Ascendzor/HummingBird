@@ -52,7 +52,7 @@ function ColdSplash () {
             snowflakes.push(snowFlakeObject);
         };
         timers.push(setInterval(update, ONE_FRAME_TIME));
-        timers.push(setTimeout(segue, 1));
+        timers.push(setTimeout(segue, 6000));
     }
 
     function update() {
