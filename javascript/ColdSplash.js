@@ -34,7 +34,6 @@ function ColdSplash () {
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
 		context = canvas.getContext('2d');
-		console.log(images["images/splashscreen/logo.png"]);
         logo = {
             img: images["images/splashscreen/logo.png"],
             position: {x:(screenSize.width/2)-(images["images/splashscreen/logo.png"].width/2), y:(screenSize.height/2)-(images["images/splashscreen/logo.png"].height/2)}
@@ -96,7 +95,6 @@ function ColdSplash () {
     function segue () {
 		context.fillStyle = "rgb(0, 0, 0)";
 		context.fillRect(0, 0, screenSize.width, screenSize.height);
-        console.log("segueing to main game");
 		for(var i=0; i<timers.length; i++){
 			clearInterval(timers[i]);
 		}

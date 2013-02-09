@@ -12,11 +12,17 @@ function main(){
     var collisionSegments = []; 
     var collisionSegmentImages = [];
 	
+    //pickup state vars
 	var pickups = [];
 	var pickupSpider;
 	var pickupButterfly;
 	var trees = [];
 	var treeImage;
+
+    //scoring vars
+    var butterflysPickedUp = 0;
+    var spidersPickedUp = 0;
+    var timePlayed = 0;
 
     var eventLog = [];
     var start_date = Date.now();
@@ -25,7 +31,6 @@ function main(){
     var hasHeartUpBeat = false; 
     var hasHeartDownBeat = false;
 
-	var score = 0;
 	
 	var bps = 2;
 	var pickupsPickedUp = 1;
@@ -36,7 +41,7 @@ function main(){
 	var boostingState = "end";
 	var boostingStartTime;
 	
-    // drawing the skybox
+    // skybox object lives here
     var sky;
 	
 	var buttons = [];
@@ -54,7 +59,6 @@ function main(){
 	}
 	
 	function initialize(){
-		console.log("initializing Main");
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
 		canvas.height = screenSize.height;
@@ -222,6 +226,11 @@ function main(){
 		
 		if(bird.getIsDead()){
 			xScalar = 0;
+
+            if (bird.hasExploded()) {
+                Scoreboard(timePlayed, spidersPickedUp, butterflysPickedUp, 300);
+                clearer();
+            };
 		}
 		
 		for(var i=0; i < collisionSegments.length; i++){
@@ -242,9 +251,8 @@ function main(){
 		for(var i=0; i < pickups.length; i++){
 			pickups[i].update(collisionSegments[0].getVelocity(), xScalar);
 		}
-		
-		
 		sky.update(xScalar);
+
     }
 	
 	function spawnPickup(){
@@ -307,16 +315,20 @@ function main(){
 					if(bird.getPosition().Y < (pickups[i].getPosition().Y+pickups[i].getSize().height)){
 						if((bird.getPosition().Y+bird.getSize().height) > pickups[i].getPosition().Y){
 							var index = pickups.indexOf(pickups[i]);
-							score += 1000;
+
 							
 							if(pickups[i].getIsBooster() == 1){
-								score += 1000;
+                                // is a butterfly
+                                butterflysPickedUp ++;
 								
 								if(boostingState == "end"){
 									boostingState = "start";
 									boostingStartTime = Date.now();
 								}
-							}
+							} else {
+                                // is picking up a spider
+                                spidersPickedUp ++;
+                            }
 							
 							pickups.splice(index, 1);
 							pickupsPickedUp += 0.1;
@@ -346,10 +358,11 @@ function main(){
 		bird.draw();
 	}
 	
+
+    //updates the score
 	function manageScore(){
 		if(bird.getIsDead() == false){
-			score++;
-			document.getElementById("theParagraph").innerHTML = score;
+            timePlayed ++;
 		}
 	}
 	
@@ -365,7 +378,6 @@ function main(){
 			for(var i=0; i<pickups.length; i++){
 				pickups[i].stopAnimation();
 			}
-			setTimeout(clearer, 4000);
 		}
 	}
 	initialize();

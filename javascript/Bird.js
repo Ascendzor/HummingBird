@@ -8,6 +8,7 @@ function Bird(textures, explosionTextures){
 	var intervaleExplode;
 	
 	var isDead = false;
+    var isExploded = false;
 	
 	var velocity;
 	var explosionAnimationIndex = 0;
@@ -82,15 +83,21 @@ function Bird(textures, explosionTextures){
 		if(!isDead){
 			intervalExplode = setInterval(explode, 70);
 			isDead = true;
-			setTimeout(function(){Scoreboard();}, 1500)
+			
 		};
 	};
+
+    this.hasExploded = function() {
+        return isExploded;
+    };
 	
 	var explode = function(){
 		if(explosionAnimationIndex < explosionTextures.length-1)
 		{
 			explosionAnimationIndex++;
 		}
+        clearInterval(intervalExplode);
+        isExploded = true;
 	}
 
 	constructor();

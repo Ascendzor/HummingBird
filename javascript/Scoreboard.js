@@ -1,8 +1,9 @@
-function Scoreboard(){
-    var spidersEaten;
-    var butterflysEaten;
-    var maxHeartRate;
-    var totalScore;
+function Scoreboard(distanceTravelled, spiderScore, butterflyScore, heartRateScore){
+    var spidersEaten = spiderScore;
+    var butterflysEaten = butterflyScore;
+    var maxHeartRate = heartRateScore;
+    var totalScore = (spidersEaten * 1000) + (butterflysEaten * 2000);
+    var distance = distanceTravelled;
 
     var buttonNewGame;
     var buttonCredits;
@@ -11,10 +12,6 @@ function Scoreboard(){
 
     function initialize () {
         // get thescore
-        spidersEaten = 2;
-        butterflysEaten = 5;
-        maxHeartRate = 300;
-        totalScore = 9001;
 		
         var gameContainer = document.getElementById("gamecontainer");
         scoreDiv = document.createElement("div");
@@ -40,6 +37,7 @@ function Scoreboard(){
 
         gameContainer.appendChild(scoreDiv);
     }
+
     function cleanup () {
         var gameContainer = document.getElementById("gamecontainer");
         gameContainer.removeChild(scoreDiv);

@@ -68,8 +68,8 @@ function clickHandler(click){
 								clearInterval(activeIntervals[j]);
 							}
 							activeButtons[i].onClick();
-							console.log(i);
-							console.log(activeButtons[i]);
+							//console.log(i);
+							//console.log(activeButtons[i]);
 						}
 					}
 				}
