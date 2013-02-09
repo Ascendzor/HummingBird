@@ -52,6 +52,7 @@ function CollisionSegment(x, y, newTextures){
 	
 	this.draw = function(){
 		if((x+width) < 0){
+            this.segmentPassed();
 			x = (screenSize.width-velocity.X);
 			y = previous.getY();
 			var randint;

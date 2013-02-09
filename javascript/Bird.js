@@ -95,9 +95,10 @@ function Bird(textures, explosionTextures){
 		if(explosionAnimationIndex < explosionTextures.length-1)
 		{
 			explosionAnimationIndex++;
-		}
-        clearInterval(intervalExplode);
-        isExploded = true;
+		} else{
+            clearInterval(intervalExplode);
+            isExploded = true;
+        }
 	}
 
 	constructor();

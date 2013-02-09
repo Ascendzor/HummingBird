@@ -1,9 +1,10 @@
-function Scoreboard(distanceTravelled, spiderScore, butterflyScore, heartRateScore){
+function Scoreboard(segmentsPassed, timePassed, spiderScore, butterflyScore, heartRateScore){
     var spidersEaten = spiderScore;
     var butterflysEaten = butterflyScore;
     var maxHeartRate = heartRateScore;
     var totalScore = (spidersEaten * 1000) + (butterflysEaten * 2000);
-    var distance = distanceTravelled;
+    var distance = segmentsPassed;
+    var timePlayed = timePassed;
 
     var buttonNewGame;
     var buttonCredits;
@@ -16,6 +17,8 @@ function Scoreboard(distanceTravelled, spiderScore, butterflyScore, heartRateSco
         var gameContainer = document.getElementById("gamecontainer");
         scoreDiv = document.createElement("div");
         scoreDiv.setAttribute('id','scoreboard');
+
+        //TODO refactor so this isn't a huge long line
         scoreDiv.innerHTML = "<ul><li>Spiders Eaten: " + spidersEaten + " </li><li>Butterflys Eaten: " + butterflysEaten + "</li><li> Max HeartRate: " + maxHeartRate + " bpm</li><li><b>Total Score: " + totalScore + "</b></li></ul>";
 
         buttonNewGame = document.createElement("div");

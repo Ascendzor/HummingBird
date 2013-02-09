@@ -23,6 +23,7 @@ function main(){
     var butterflysPickedUp = 0;
     var spidersPickedUp = 0;
     var timePlayed = 0;
+    var segmentsPassed = 0;
 
     var eventLog = [];
     var start_date = Date.now();
@@ -112,6 +113,10 @@ function main(){
 		for(var i = 0; i< 5; i++ )
 		{
 			collisionSegments[i] = new CollisionSegment(i*(screenSize.width / 4), screenSize.height-(screenSize.width / 4), collisionSegmentImages);
+            collisionSegments[i].segmentPassed = function() {
+                segmentsPassed ++;
+                console.log("I FUCKING WIN AT THIS EXPERIMENT CALLED LIFE");
+            };
 			if( i == 0 ) {
 				firstSegment = collisionSegments[i];
 			} else {
@@ -228,7 +233,7 @@ function main(){
 			xScalar = 0;
 
             if (bird.hasExploded()) {
-                Scoreboard(timePlayed, spidersPickedUp, butterflysPickedUp, 300);
+                Scoreboard(segmentsPassed ,timePlayed, spidersPickedUp, butterflysPickedUp, 300);
                 clearer();
             };
 		}
