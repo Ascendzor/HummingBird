@@ -55,8 +55,7 @@ function main(){
         updateObjects(); 
         checkCollisions(); 
         draw();
-		
-		manageScore();
+		updateTimePlayed();
 	}
 	
 	function initialize(){
@@ -115,7 +114,6 @@ function main(){
 			collisionSegments[i] = new CollisionSegment(i*(screenSize.width / 4), screenSize.height-(screenSize.width / 4), collisionSegmentImages);
             collisionSegments[i].segmentPassed = function() {
                 segmentsPassed ++;
-                console.log("I FUCKING WIN AT THIS EXPERIMENT CALLED LIFE");
             };
 			if( i == 0 ) {
 				firstSegment = collisionSegments[i];
@@ -364,8 +362,7 @@ function main(){
 	}
 	
 
-    //updates the score
-	function manageScore(){
+	function updateTimePlayed(){
 		if(bird.getIsDead() == false){
             timePlayed ++;
 		}

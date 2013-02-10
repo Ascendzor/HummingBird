@@ -5,10 +5,10 @@ div #scoreboard {
     width : 515px;
     height: 255px;
     background-image: url("../images/textbackground.png");
-    margin-top: -550px;
+    margin-top: -594px;
     margin-left: 100px;
     padding-left: 85px;
-    padding-top: 60px;
+    padding-top: 36px;
 }
 
 div #MainMenu {
