@@ -1,4 +1,5 @@
 
+var audioToggle;
 // draws the main menu
 function MainMenu() {
 	
@@ -7,6 +8,7 @@ function MainMenu() {
 	var buttonCredits;
 	
 	var imageGuide;
+	
 	
 	var scoreDiv;
 	
@@ -38,11 +40,24 @@ function MainMenu() {
 		
 		imageGuide = document.createElement("div");
 		imageGuide.setAttribute('id', 'MainMenuImageGuide');
+		
+		audioToggle = document.createElement("div");
+		audioToggle.setAttribute('id', 'audioOff');
+		audioToggle.addEventListener("click", function(){
+			if(backgroundAudio.volume == 1){
+				backgroundAudio.volume = 0;
+				audioToggle.setAttribute('id', 'audioOn');
+			}else{
+				backgroundAudio.volume = 1;
+				audioToggle.setAttribute('id', 'audioOff');
+			}
+		});
 
         scoreDiv.appendChild(buttonNewGame);
 		scoreDiv.appendChild(buttonScoreboard);
         scoreDiv.appendChild(buttonCredits);
 		scoreDiv.appendChild(imageGuide);
+		scoreDiv.appendChild(audioToggle);
 
         gameContainer.appendChild(scoreDiv);
     }

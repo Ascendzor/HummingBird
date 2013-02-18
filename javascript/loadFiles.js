@@ -1,8 +1,12 @@
 var images;
+var backgroundAudio;
 
 var canvasOffsetLeft;
 var canvasOffsetTop;
 function loadFiles(){
+		backgroundAudio = document.getElementById('audioBackground');
+		backgroundAudio.volume = 1;
+	
 		var loadedImages = 0;
 		images = [];
 		var theImages = [];
@@ -71,7 +75,9 @@ function loadFiles(){
 						"images/tree.png",
 						"images/Buttons/play.png",
 						"images/Buttons/credits.png",
-						"images/Buttons/info.png"];
+						"images/Buttons/info.png",
+						"images/AudioOn.png",
+						"images/AudioOff.png"];
 						
 	
 	var canvas = document.getElementById('myCanvas');

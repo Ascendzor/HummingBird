@@ -84,3 +84,21 @@ div #creditsbutton {
     margin-left:200px;
     margin-top: -219px;
 }
+
+div #audioOn{
+	background-image: url("../images/audioOn.png");
+	position: fixed;
+	width: 64px;
+	height: 64px;
+	right: 142px;
+	top: 60px;
+}
+
+div #audioOff{
+	background-image: url("../images/audioOff.png");
+	position: fixed;
+	width: 64px;
+	height: 64px;
+	right: 142px;
+	top: 60px;
+}

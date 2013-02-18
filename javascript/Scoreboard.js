@@ -52,6 +52,7 @@ function Scoreboard(segmentsPassed, timePassed, spiderScore, butterflyScore, hea
         scoreDiv.appendChild(scoreItemList);
         scoreDiv.appendChild(buttonNewGame);
         scoreDiv.appendChild(buttonCredits);
+		scoreDiv.appendChild(audioToggle);
         gameContainer.appendChild(scoreDiv);
 
         // put the score into the div

@@ -27,8 +27,6 @@ function ColdSplash () {
     }
 
     function initialize () {
-		var backgroundAudio = document.getElementById('audioBackground');
-		backgroundAudio.volume = 0.1;
 		
 		var canvas = document.getElementById('myCanvas');
 		canvas.width = screenSize.width;
