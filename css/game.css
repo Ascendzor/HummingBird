@@ -5,10 +5,10 @@ div #scoreboard {
     width : 515px;
     height: 255px;
     background-image: url("../images/textbackground.png");
-    margin-top: -594px;
+    margin-top: -550px;
     margin-left: 100px;
     padding-left: 85px;
-    padding-top: 36px;
+    padding-top: 60px;
 }
 
 div #MainMenu {
@@ -58,6 +58,7 @@ div #MainMenuImageGuide{
 
 #scoreboard ul {
     list-style: none;
+	margin-top: -15px;
 }
 
 div #ScoreboardPlayButton {
@@ -65,7 +66,7 @@ div #ScoreboardPlayButton {
     width: 319px;
     height: 219px;
     margin-left:-180px;
-    margin-top:68px;
+    margin-top:23px;
     float: left;
 }
 div #ScoreboardCreditsButton {
@@ -73,7 +74,8 @@ div #ScoreboardCreditsButton {
     width: 443px;
     height: 219px;
     margin-left:163px;
-    margin-top:93px;
+    margin-top:-218px;
+	float: left;
 }
 
 div #creditsbutton {
@@ -87,18 +89,18 @@ div #creditsbutton {
 
 div #audioOn{
 	background-image: url("../images/audioOn.png");
-	position: fixed;
+	float: left;
 	width: 64px;
 	height: 64px;
-	right: 142px;
-	top: 60px;
+	margin-left: 544px;
+	margin-top: -110px;
 }
 
 div #audioOff{
 	background-image: url("../images/audioOff.png");
-	position: fixed;
+	float: left;
 	width: 64px;
 	height: 64px;
-	right: 142px;
-	top: 60px;
+	margin-left: 544px;
+	margin-top: -110px;
 }

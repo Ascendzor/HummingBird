@@ -1,11 +1,24 @@
 var images;
 var backgroundAudio;
+var audioToggle;
 
 var canvasOffsetLeft;
 var canvasOffsetTop;
 function loadFiles(){
 		backgroundAudio = document.getElementById('audioBackground');
 		backgroundAudio.volume = 1;
+		
+		audioToggle = document.createElement("div");
+		audioToggle.setAttribute('id', 'audioOff');
+		audioToggle.addEventListener("click", function(){
+			if(backgroundAudio.volume == 1){
+				backgroundAudio.volume = 0;
+				audioToggle.setAttribute('id', 'audioOn');
+			}else{
+				backgroundAudio.volume = 1;
+				audioToggle.setAttribute('id', 'audioOff');
+			}
+		});
 	
 		var loadedImages = 0;
 		images = [];
